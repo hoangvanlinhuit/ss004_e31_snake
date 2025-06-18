@@ -1,4 +1,5 @@
 Link: https://elearning.citd.vn/pluginfile.php/63221/mod_resource/content/3/SS004_10%20%287%29.pdf
+Trello: https://trello.com/b/FGTKyL6e/my-trello-board
 SS004.10 - ĐỒ ÁN CUỐI KỲ
 giảng viên: toannv@uit.edu.vn
 1. Đề bài

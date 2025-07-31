@@ -34,7 +34,11 @@
 ## 📁 Nội dung báo cáo
 
 ### 1. 📜 Hợp đồng nhóm
+- Tên nhóm
+- Thành viên nhóm, vai trò
+- Mục tiêu
 - Nội dung về phân công công việc, thời hạn, trách nhiệm, quy tắc làm việc nhóm...
+- Tiêu chí đánh giá
 
 ### 2. 🔗 Các liên kết công cụ
 - Trello, GitHub, Slack, Overleaf như ở trên
@@ -66,7 +70,9 @@
 
 ### 7. 🧾 Đánh giá việc thực hiện hợp đồng nhóm
 - Mức độ hoàn thành từng thành viên
+- Đánh giá theo các tiêu chí đã nêu trong hợp đồng
 - Thành viên tích cực, chưa tích cực, cam kết, cải thiện
+- Đánh giá từng thành viên, tổng kết đánh giá nhóm
 
 ---
 

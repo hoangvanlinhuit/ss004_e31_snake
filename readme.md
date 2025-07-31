@@ -14,7 +14,7 @@
 | Huỳnh Minh Cường       | ...  | UIT.MSSV                   | UIT.MSSV       |
 | Ngô Đình Thủ Nhân      | ...  | UIT.MSSV                   | UIT.MSSV       |
 | Nguyễn Như Ngọc        | ...  | UIT.MSSV                   | UIT.MSSV       |
-| Nguyễn Hải             | ...  | UIT.MSSV                   | UIT.MSSV       |
+| Nguyễn Ngọc Hải             | ...  | UIT.MSSV                   | UIT.MSSV       |
 
 ---
 

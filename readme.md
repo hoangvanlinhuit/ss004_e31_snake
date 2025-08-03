@@ -3,6 +3,7 @@
 ## 🧑‍🏫 Giảng viên hướng dẫn
 - **Tên**: Nguyễn Văn Toàn
 - **Email**: toannv@uit.edu.vn
+-
 
 ---
 
@@ -104,4 +105,7 @@
 - Ghi chú rõ những gì là phần mở rộng/sáng tạo trong phần mô tả kỹ thuật
 
 ---
+
+Gantt
+TBD
 

@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Snake Game",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-I", "C:/raylib/w64devkit/include",         // đường dẫn tới raylib
+        "-L", "C:/raylib/w64devkit/lib",             // thư viện raylib
+        "src/main.cpp",
+        "src/Game.cpp",                              // nếu bạn có file này
+        "-o", "snake.exe",
+        "-lraylib",
+        "-lopengl32",
+        "-lgdi32",
+        "-lwinmm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Compile C++ Snake Game using raylib"
+    }
+  ]
+}

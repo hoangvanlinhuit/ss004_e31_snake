@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Snake Game",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/snake.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
+      "preLaunchTask": "Build Snake Game"
+    }
+  ]
+}

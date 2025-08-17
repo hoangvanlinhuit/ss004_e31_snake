@@ -129,6 +129,7 @@ void Game::Reset() {
 
 // ================== Leaderboard ==================
 void Game::SaveScoreToFile() {
+    if (playerName.empty()) return;
     std::ofstream file("leaderboard.txt", std::ios::app);
     if (file.is_open()) {
         file << playerName << " " << score << "\n";
@@ -139,8 +140,8 @@ void Game::SaveScoreToFile() {
 void Game::LoadLeaderboard() {
     leaderboard.clear();
     std::ifstream file("leaderboard.txt");
+    if (!file.is_open()) return;
     std::string line;
-
     while (getline(file, line)) {
         std::istringstream iss(line);
         std::string name;
@@ -149,7 +150,6 @@ void Game::LoadLeaderboard() {
             leaderboard.push_back({name, point});
         }
     }
-
     std::sort(leaderboard.begin(), leaderboard.end(), [](auto& a, auto& b) {
         return a.score > b.score;
     });

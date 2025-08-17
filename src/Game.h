@@ -36,7 +36,6 @@ private:
     Food food;
     bool running;
     int score;
-    bool showPlayAgain;
 
     std::string playerName;
     std::vector<LeaderboardEntry> leaderboard;

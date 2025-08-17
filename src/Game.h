@@ -1,12 +1,13 @@
-// Game.h
 #ifndef GAME_H
 #define GAME_H
+
 #include "Snake.h"
 #include "Food.h"
+#include <raylib.h>
 #include <string>
 #include <vector>
 
-struct Player {
+struct LeaderboardEntry {
     std::string name;
     int score;
 };
@@ -15,28 +16,33 @@ class Game {
 public:
     Game();
     ~Game();
+
     void Draw();
     void Update();
+    void GameOver();
+    void Reset();
+
     void CheckCollisionWithFood();
     void CheckCollisionWithEdges();
     void CheckCollisionWithTail();
-    void GameOver();
+
     void SaveScoreToFile();
-    void LoadLeaderboard(); // mới
-    void ShowLeaderboard(); // giữ nếu cần
-    bool showPlayAgain; // hiển thị nút sau khi thua
+    void LoadLeaderboard();
 
+    bool showGameOver = false; // Thêm biến này
 
+private:
     Snake snake;
     Food food;
     bool running;
     int score;
-    std::string playerName; // nhập từ người chơi
+    bool showPlayAgain;
 
-private:
+    std::string playerName;
+    std::vector<LeaderboardEntry> leaderboard;
+
     Sound eatSound;
     Sound wallSound;
-    std::vector<Player> leaderboard; // mới
 };
 
 #endif

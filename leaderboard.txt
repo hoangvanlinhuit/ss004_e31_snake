@@ -13,3 +13,7 @@ lam 0
 cuong 0
 hung 0
 lam 0
+lam 1
+tam 2
+linh 100
+tam 50

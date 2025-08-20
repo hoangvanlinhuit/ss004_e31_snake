@@ -22,7 +22,7 @@
 ## 🔗 Link các công cụ làm việc nhóm
 
 - **Trello**: [My Trello Board](https://trello.com/b/FGTKyL6e/my-trello-board)
-- **Slack**: `#kỹ-năng-nghề-bài-tập-6` (trong workspace nhóm)
+- **Slack**: `#01` (trong workspace nhóm)
 - **GitHub**: [hoangvanlinhuit/ss004_e31_snake](https://github.com/hoangvanlinhuit/ss004_e31_snake)
 - **Overleaf**: [Overleaf Project](https://www.overleaf.com/project/6889a10d48bbecaee1ab0b4f)
 - **Bài hướng dẫn GV**: `ConRan.mp4`

@@ -13,7 +13,9 @@
 // Ham khoi tao doi tuong Food, nhan vao body cua con ran
 Food::Food(std::deque<Vector2> snakeBody) {
     // Tai anh chuot tu file PNG
-    Image image = LoadImage("assets/Graphics/mouse.png");
+
+    Image image = LoadImage("assets/Graphics/food.png");
+
 
     // Chuyen anh thanh texture de ve len man hinh
     texture = LoadTextureFromImage(image);

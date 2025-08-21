@@ -79,6 +79,7 @@ int main() {
 
     // ====== Bắt đầu game ======
     Game game;
+
     game.playerName = name; // Hien thi ten nguoi choi
     game.difficulty = gameSpeed; // Hien thi do kho cua game
 

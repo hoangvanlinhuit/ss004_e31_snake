@@ -28,71 +28,70 @@ std::string GetPlayerNameInput() {
 }
 
 int main() {
-
-    const int screenWidth = offset * 2 + cellSize * cellCount + 200; // thêm 200 cho leaderboard
-    const int screenHeight = offset * 2 + cellSize * cellCount + 50; // thêm chiều cao nếu cần
+    const int screenWidth = offset * 2 + cellSize * cellCount + 200;
+    const int screenHeight = offset * 2 + cellSize * cellCount + 50;
     InitWindow(screenWidth, screenHeight, "SNAKE GAME - GROUP 1");
-    // InitWindow(2 * offset + cellSize * cellCount, 2 * offset + cellSize * cellCount + 300, "SNAKE GAME - GROUP 1");
     SetTargetFPS(60);
+
     std::string name = GetPlayerNameInput();
 
+    // ====== Menu chọn độ khó ======
+    float gameSpeed = 0.2f; // mặc định Normal
+    bool difficultyChosen = false;
+
+    Rectangle easyBtn = {(float)screenWidth/2 - 75, 200, 150, 40};
+    Rectangle normalBtn = {(float)screenWidth/2 - 75, 260, 150, 40};
+    Rectangle hardBtn = {(float)screenWidth/2 - 75, 320, 150, 40};
+
+    while (!WindowShouldClose() && !difficultyChosen) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        DrawText("Select Difficulty", screenWidth/2 - 120, 120, 30, DARKBLUE);
+
+        Vector2 mouse = GetMousePosition();
+        DrawRectangleRec(easyBtn, CheckCollisionPointRec(mouse, easyBtn) ? GRAY : LIGHTGRAY);
+        DrawRectangleRec(normalBtn, CheckCollisionPointRec(mouse, normalBtn) ? GRAY : LIGHTGRAY);
+        DrawRectangleRec(hardBtn, CheckCollisionPointRec(mouse, hardBtn) ? GRAY : LIGHTGRAY);
+
+        DrawText("EASY", easyBtn.x + 40, easyBtn.y + 10, 20, BLACK);
+        DrawText("NORMAL", normalBtn.x + 30, normalBtn.y + 10, 20, BLACK);
+        DrawText("HARD", hardBtn.x + 40, hardBtn.y + 10, 20, BLACK);
+
+        EndDrawing();
+
+        //Vector2 mouse = GetMousePosition();
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            if (CheckCollisionPointRec(mouse, easyBtn)) {
+                gameSpeed = 0.3f;
+                difficultyChosen = true;
+            }
+            else if (CheckCollisionPointRec(mouse, normalBtn)) {
+                gameSpeed = 0.2f;
+                difficultyChosen = true;
+            }
+            else if (CheckCollisionPointRec(mouse, hardBtn)) {
+                gameSpeed = 0.1f;
+                difficultyChosen = true;
+            }
+        }
+    }
+
+    // ====== Bắt đầu game ======
     Game game;
     game.playerName = name;
 
     while (!WindowShouldClose()) {
         BeginDrawing();
+        ClearBackground(RAYWHITE);
 
-        if (EventTriggered(0.2)) {
-            allowMove = true;
-            game.Update();
-        }
+        allowMove = EventTriggered(gameSpeed);  // set flag nếu đủ thời gian
+        game.Update();  // trong đó gọi Snake::Update()
 
-        if (IsKeyPressed(KEY_UP) && game.snake.direction.y != 1 && allowMove) {
-            game.snake.direction = {0, -1};
-            game.running = true;
-            allowMove = false;
-        }
-        if (IsKeyPressed(KEY_DOWN) && game.snake.direction.y != -1 && allowMove) {
-            game.snake.direction = {0, 1};
-            game.running = true;
-            allowMove = false;
-        }
-        if (IsKeyPressed(KEY_LEFT) && game.snake.direction.x != 1 && allowMove) {
-            game.snake.direction = {-1, 0};
-            game.running = true;
-            allowMove = false;
-        }
-        if (IsKeyPressed(KEY_RIGHT) && game.snake.direction.x != -1 && allowMove) {
-            game.snake.direction = {1, 0};
-            game.running = true;
-            allowMove = false;
-        }
-
-        ClearBackground(blue);
-        DrawRectangleLinesEx(Rectangle{(float)offset - 5, (float)offset - 5, (float)cellSize * cellCount + 10, (float)cellSize * cellCount + 10}, 5, darkGreen);
-        DrawText("SNAKE GAME - GROUP 1", offset - 5, 20, 40, darkBlue);
-        DrawText(TextFormat("%i", game.score), offset - 5, offset + cellSize * cellCount + 10, 40, darkGreen);
         game.Draw();
-
-        if (game.showPlayAgain && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            Vector2 mouse = GetMousePosition();
-            int btnX = offset + cellSize * cellCount + 40;
-            int btnY = offset + cellSize * 2;
-            int btnWidth = 150;
-            int btnHeight = 40;
-
-            if (mouse.x >= btnX && mouse.x <= btnX + btnWidth &&
-                mouse.y >= btnY && mouse.y <= btnY + btnHeight) {
-                game.snake.Reset();
-                game.food.position = game.food.GenerateRandomPos(game.snake.body);
-                game.running = false;
-                game.score = 0;
-                game.showPlayAgain = false;
-            }
-        }
-
         EndDrawing();
     }
+
     CloseWindow();
     return 0;
 }

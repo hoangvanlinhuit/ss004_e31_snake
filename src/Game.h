@@ -1,6 +1,6 @@
-// Game.h
 #ifndef GAME_H
 #define GAME_H
+
 #include "Snake.h"
 #include "Food.h"
 #include <string>
@@ -15,6 +15,7 @@ class Game {
 public:
     Game();
     ~Game();
+
     void Draw();
     void Update();
     void CheckCollisionWithFood();
@@ -22,21 +23,31 @@ public:
     void CheckCollisionWithTail();
     void GameOver();
     void SaveScoreToFile();
-    void LoadLeaderboard(); // mới
-    void ShowLeaderboard(); // giữ nếu cần
-    bool showPlayAgain; // hiển thị nút sau khi thua
+    void LoadLeaderboard();
+    void ShowLeaderboard();
 
-
+    //  
     Snake snake;
     Food food;
     bool running;
     int score;
-    std::string playerName; // nhập từ người chơi
+    std::string playerName;
+    bool showPlayAgain;
 
 private:
     Sound eatSound;
     Sound wallSound;
-    std::vector<Player> leaderboard; // mới
+    std::vector<Player> leaderboard;
+
+    // Dùng cho màn hình Game Over
+    bool showGameOver;
+    Rectangle playAgainButton;
+
+    // Các hàm phụ trợ
+    void Reset();
+    void CheckMouseEvents();
+    void DrawGameOverScreen();
+    void DrawPlayAgainButton();
 };
 
 #endif

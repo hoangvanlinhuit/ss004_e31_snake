@@ -33,20 +33,20 @@ public:
     int score;
     std::string playerName;
     bool showPlayAgain;
-
     float difficulty; // 0.3 = Easy, 0.2 = Normal, 0.1 = Hard
+
+    // Dùng cho màn hình Game Over
+    bool showGameOver;
+    Rectangle playAgainButton;
+    void Reset();
 
 private:
     Sound eatSound;
     Sound wallSound;
     std::vector<Player> leaderboard;
 
-    // Dùng cho màn hình Game Over
-    bool showGameOver;
-    Rectangle playAgainButton;
-
     // Các hàm phụ trợ
-    void Reset();
+    
     void CheckMouseEvents();
     void DrawGameOverScreen();
     void DrawPlayAgainButton();

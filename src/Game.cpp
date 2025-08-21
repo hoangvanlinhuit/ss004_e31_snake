@@ -55,27 +55,6 @@ void Game::Draw() {
         DrawText(entry.c_str(), leaderboardX, leaderboardY + 30 + i * 25, 20, darkGreen);
     }
 
-    // Vẽ rắn và thức ăn trong khung
-    food.Draw();
-    snake.Draw();
-
-    // Vẽ nút trong Draw() nếu showPlayAgain == true
-    // if (showPlayAgain) {
-    //     int btnWidth = 150;
-    //     int btnHeight = 40;
-
-    //     // Căn giữa trong khung game
-    //     int btnX = offset + (cellSize * cellCount - btnWidth) / 2;
-    //     int btnY = offset + (cellSize * cellCount - btnHeight) / 2;
-
-    //     Rectangle btnRect = { (float)btnX, (float)btnY, (float)btnWidth, (float)btnHeight };
-    //     Vector2 mouse = GetMousePosition();
-    //     Color btnColor = CheckCollisionPointRec(mouse, btnRect) ? GREEN : darkGreen;
-
-    //     DrawRectangleRec(btnRect, btnColor);
-    //     DrawText("Play Again", btnX + 20, btnY + 10, 20, RAYWHITE);
-    // }
-
     // Hiển thị màn hình Game Over 3
     if (showGameOver) {
         DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.7f));
@@ -97,40 +76,34 @@ void Game::Draw() {
 
     DrawText(diffText.c_str(), GetScreenWidth() - 200, 10, 20, LIGHTGRAY);
 
-    
+    // Vẽ rắn và thức ăn trong khung
+    food.Draw();
+    snake.Draw();
+
     // Hien thi do kho o goc ben phai
-	std::string diffText = "Difficulty: ";
+	diffText = "Difficulty: ";
 	if (difficulty == 0.3f) diffText += "Easy";
 	else if (difficulty == 0.2f) diffText += "Normal";
 	else if (difficulty == 0.1f) diffText += "Hard";
 	else diffText += "Custom";
 	DrawText(diffText.c_str(), GetScreenWidth() - 200, 10, 20, LIGHTGRAY);
+
+    // hiển thị điểm số
+    std::string scoreText = "Score: " + std::to_string(score);
+    DrawText(scoreText.c_str(), offset, offset + cellSize * cellCount + 10, 20, GREEN);
 }
+
+
 
 void Game::Reset() {
-    snake.Reset();
-    food = Food(snake.body);
+    snake.Reset();                      // Reset rắn TRƯỚC
+    food = Food(snake.body);           // Tạo mồi sau khi đã có body mới
     score = 0;
     showGameOver = false;
+    showPlayAgain = false;
+    running = true;                    // Đảm bảo game bắt đầu lại
 }
 
-// void Game::Update() {
-//     if (running) {
-//         snake.Update();
-//         CheckCollisionWithFood();
-//         CheckCollisionWithEdges();
-//         CheckCollisionWithTail();
-//     }
-
-//     // Xử lý sự kiện chuột cho nút "Chơi lại" 3
-//     if (showGameOver && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-//         Vector2 mousePos = GetMousePosition();
-//         if (CheckCollisionPointRec(mousePos, playAgainButton)) {
-//             Reset(); // Reset lại game (gồm snake, food, score,...)
-//             showGameOver = false;
-//         }
-//     }
-// }
 
 void Game::Update() {
     if (running) {
@@ -144,22 +117,6 @@ void Game::Update() {
         CheckCollisionWithFood();
         CheckCollisionWithEdges();
         CheckCollisionWithTail();
-    }
-
-    // Xử lý sự kiện chuột cho nút "Chơi lại" 3
-    if (showGameOver && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        Vector2 mousePos = GetMousePosition();
-        // if (CheckCollisionPointRec(mousePos, playAgainButton)) {
-        //     Reset(); // Reset lại game (gồm snake, food, score,...)
-        //     showGameOver = false;
-        // }
-        if (CheckCollisionPointRec(mousePos, playAgainButton)) {
-            Reset();              // Reset snake, food, score...
-            running = true;       // đặt lại trạng thái game
-            showGameOver = false;
-            showPlayAgain = false;
-        }
-
     }
 }
 

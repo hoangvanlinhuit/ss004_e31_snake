@@ -87,6 +87,16 @@ void Game::Draw() {
         DrawRectangleRec(playAgainButton, DARKGRAY);
         DrawText("Play Again", playAgainButton.x + 30, playAgainButton.y + 15, 20, WHITE);
     }
+
+
+    std::string diffText = "Difficulty: ";
+    if (difficulty == 0.3f) diffText += "Easy";
+    else if (difficulty == 0.2f) diffText += "Normal";
+    else if (difficulty == 0.1f) diffText += "Hard";
+    else diffText += "Custom";
+
+    DrawText(diffText.c_str(), GetScreenWidth() - 200, 10, 20, LIGHTGRAY);
+
     
     // Hien thi do kho o goc ben phai
 	std::string diffText = "Difficulty: ";
@@ -158,7 +168,9 @@ void Game::CheckCollisionWithFood() {
     if (Vector2Equals(snake.body[0], food.position)) {
         food.position = food.GenerateRandomPos(snake.body);
         snake.addSegment = true;
+
         score = score + 10;
+
         PlaySound(eatSound);
     }
 }

@@ -49,9 +49,10 @@ int main() {
 
         DrawText("Select Difficulty", screenWidth/2 - 120, 120, 30, DARKBLUE);
 
-        DrawRectangleRec(easyBtn, LIGHTGRAY);
-        DrawRectangleRec(normalBtn, LIGHTGRAY);
-        DrawRectangleRec(hardBtn, LIGHTGRAY);
+        Vector2 mouse = GetMousePosition();
+        DrawRectangleRec(easyBtn, CheckCollisionPointRec(mouse, easyBtn) ? GRAY : LIGHTGRAY);
+        DrawRectangleRec(normalBtn, CheckCollisionPointRec(mouse, normalBtn) ? GRAY : LIGHTGRAY);
+        DrawRectangleRec(hardBtn, CheckCollisionPointRec(mouse, hardBtn) ? GRAY : LIGHTGRAY);
 
         DrawText("EASY", easyBtn.x + 40, easyBtn.y + 10, 20, BLACK);
         DrawText("NORMAL", normalBtn.x + 30, normalBtn.y + 10, 20, BLACK);
@@ -59,7 +60,7 @@ int main() {
 
         EndDrawing();
 
-        Vector2 mouse = GetMousePosition();
+        //Vector2 mouse = GetMousePosition();
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             if (CheckCollisionPointRec(mouse, easyBtn)) {
                 gameSpeed = 0.3f;
@@ -82,16 +83,15 @@ int main() {
 
     while (!WindowShouldClose()) {
         BeginDrawing();
+        ClearBackground(RAYWHITE);
 
-        if (EventTriggered(gameSpeed)) {   // ✅ dùng gameSpeed đã chọn
-            allowMove = true;
-            game.Update();
-        }
-        
-        // ... (phần code game giữ nguyên, không đổi) ...
+        allowMove = EventTriggered(gameSpeed);  // set flag nếu đủ thời gian
+        game.Update();  // trong đó gọi Snake::Update()
 
+        game.Draw();
         EndDrawing();
     }
+
     CloseWindow();
     return 0;
 }

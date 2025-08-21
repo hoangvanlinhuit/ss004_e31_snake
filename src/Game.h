@@ -33,7 +33,8 @@ public:
     int score;
     std::string playerName;
     bool showPlayAgain;
-    float difficulty; 
+
+    float difficulty; // 0.3 = Easy, 0.2 = Normal, 0.1 = Hard
 
 private:
     Sound eatSound;

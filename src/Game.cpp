@@ -96,6 +96,13 @@ void Game::Draw() {
 
     DrawText(diffText.c_str(), GetScreenWidth() - 200, 10, 20, LIGHTGRAY);
     
+    // Hien thi do kho o goc ben phai
+	std::string diffText = "Difficulty: ";
+	if (difficulty == 0.3f) diffText += "Easy";
+	else if (difficulty == 0.2f) diffText += "Normal";
+	else if (difficulty == 0.1f) diffText += "Hard";
+	else diffText += "Custom";
+	DrawText(diffText.c_str(), GetScreenWidth() - 200, 10, 20, LIGHTGRAY);
 }
 
 void Game::Reset() {

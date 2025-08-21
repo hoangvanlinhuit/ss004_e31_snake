@@ -80,6 +80,7 @@ int main() {
     // ====== Bắt đầu game ======
     Game game;
     game.playerName = name;
+    game.difficulty = gameSpeed;
 
     while (!WindowShouldClose()) {
         BeginDrawing();

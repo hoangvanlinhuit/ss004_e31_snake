@@ -17,24 +17,38 @@
 #include <deque>
 
 // Dinh nghia lop Food (doi tuong moi trong game)
+// class Food {
+// public:
+//     Vector2 position;       // Vi tri hien tai cua moi
+//     Texture2D texture;      // Hinh anh texture cua moi
+
+//     // Ham khoi tao, nhan vao than cua ran de tao vi tri moi khong trung
+//     Food(std::deque<Vector2> snakeBody);
+
+//     // Ham huy doi tuong, giai phong texture
+//     ~Food();
+
+//     // Ham ve moi len man hinh
+//     void Draw();
+
+//     // Ham tao mot toa do ngau nhien trong luoi
+//     Vector2 GenerateRandomCell();
+
+//     // Ham tao vi tri moi khong trung voi vi tri cua ran
+//     Vector2 GenerateRandomPos(std::deque<Vector2> snakeBody);
+// };
+
 class Food {
 public:
-    Vector2 position;       // Vi tri hien tai cua moi
-    Texture2D texture;      // Hinh anh texture cua moi
+    static Texture2D texture;  // dùng chung
+    static void LoadTexture();
+    static void UnloadTexture();
 
-    // Ham khoi tao, nhan vao than cua ran de tao vi tri moi khong trung
+    Vector2 position;
     Food(std::deque<Vector2> snakeBody);
-
-    // Ham huy doi tuong, giai phong texture
     ~Food();
-
-    // Ham ve moi len man hinh
     void Draw();
-
-    // Ham tao mot toa do ngau nhien trong luoi
     Vector2 GenerateRandomCell();
-
-    // Ham tao vi tri moi khong trung voi vi tri cua ran
     Vector2 GenerateRandomPos(std::deque<Vector2> snakeBody);
 };
 

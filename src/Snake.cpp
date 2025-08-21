@@ -15,10 +15,17 @@ void Snake::Draw() {
 }
 
 void Snake::Update() {
+    if (!allowMove) return;  // nếu chưa đến thời gian, không di chuyển
+
     body.push_front(Vector2Add(body[0], direction));
     if (addSegment) addSegment = false;
     else body.pop_back();
+
+    allowMove = false;  // reset lại cờ
 }
+
+
+
 
 void Snake::Reset() {
     body = {{6, 9}, {5, 9}, {4, 9}};

@@ -7,10 +7,10 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include "Wall.h"
 
 
-
-Game::Game() : snake(), food(snake.body), running(true), score(0), showPlayAgain(false) {
+Game::Game() : snake(), food(snake.body, wall), running(true), score(0), showPlayAgain(false) {
     InitAudioDevice();
     eatSound = LoadSound("assets/Sounds/eat.mp3");
     wallSound = LoadSound("assets/Sounds/wall.mp3");
@@ -79,6 +79,9 @@ void Game::Draw() {
     // Vẽ rắn và thức ăn trong khung
     food.Draw();
     snake.Draw();
+    // Vẽ tường chắn
+    wall.Draw();
+
 
     // Hien thi do kho o goc ben phai
 	diffText = "Difficulty: ";
@@ -96,12 +99,12 @@ void Game::Draw() {
 
 
 void Game::Reset() {
-    snake.Reset();                      // Reset rắn TRƯỚC
-    food = Food(snake.body);           // Tạo mồi sau khi đã có body mới
+    snake.Reset();
+    food = Food(snake.body, wall);  // <-- truyền thêm wall
     score = 0;
     showGameOver = false;
     showPlayAgain = false;
-    running = true;                    // Đảm bảo game bắt đầu lại
+    running = true;
 }
 
 
@@ -117,13 +120,14 @@ void Game::Update() {
         CheckCollisionWithFood();
         CheckCollisionWithEdges();
         CheckCollisionWithTail();
+        CheckCollisionWithWall();
     }
 }
 
-
+// Kiểm tra va chạm với thức ăn
 void Game::CheckCollisionWithFood() {
     if (Vector2Equals(snake.body[0], food.position)) {
-        food.position = food.GenerateRandomPos(snake.body);
+        food.position = food.GenerateRandomPos(snake.body, wall);
         snake.addSegment = true;
 
         score = score + 10;
@@ -132,6 +136,7 @@ void Game::CheckCollisionWithFood() {
     }
 }
 
+// Kiểm tra va chạm với biên
 void Game::CheckCollisionWithEdges() {
     if (snake.body[0].x == cellCount || snake.body[0].x == -1 ||
         snake.body[0].y == cellCount || snake.body[0].y == -1) {
@@ -139,6 +144,14 @@ void Game::CheckCollisionWithEdges() {
     }
 }
 
+// Kiểm tra va chạm với tường
+void Game::CheckCollisionWithWall() {
+    if (wall.CollidesWith(snake.body[0])) {
+        GameOver();
+    }
+}
+
+// Kiểm tra va chạm với đuôi rắn
 void Game::CheckCollisionWithTail() {
     std::deque<Vector2> headless = snake.body;
     headless.pop_front();

@@ -7,13 +7,17 @@
 // Bien toan cuc dieu khien viec cho phep di chuyen
 bool allowMove = false;
 
-// Dinh nghia cac mau sac dung trong game
-Color green = {173, 204, 96, 255};       // Mau xanh la
-Color darkGreen = {43, 51, 24, 255};     // Mau xanh dam
-Color blue = {72, 116, 191, 255};        // Mau xanh da troi
-Color red = {255, 0, 0, 255};            // Mau do
-Color darkBlue = {11, 83, 148, 255};     // Mau xanh bien dam
-Color darkRed = {200, 0, 0, 255};        // Mau do dam
+// Khởi tạo màu sắc sử dụng trong game
+Color green      = { 0, 228, 48, 255 };   // xanh lá tươi
+Color darkGreen  = { 0, 117, 44, 255 };   // xanh lá đậm
+Color blue       = { 0, 121, 241, 255 };  // xanh dương sáng
+Color darkBlue   = { 0, 82, 172, 255 };   // xanh dương đậm
+Color red        = { 230, 41, 55, 255 };  // đỏ tươi
+Color darkRed    = { 160, 20, 30, 255 };  // đỏ đậm
+Color yellow     = { 253, 249, 0, 255 };  // vàng
+Color gray       = GRAY;                 // xám mặc định của raylib
+Color lightGray  = LIGHTGRAY;            // xám nhạt mặc định
+Color orange     = { 255, 161, 0, 255 };  // cam
 
 // Kich thuoc 1 o vuong trong ban do (don vi pixel)
 int cellSize = 30;

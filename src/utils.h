@@ -10,12 +10,16 @@
 extern bool allowMove;
 
 // Dinh nghia cac mau sac duoc su dung trong game
-extern Color green;       // Mau xanh la
-extern Color darkGreen;   // Mau xanh la dam
-extern Color blue;        // Mau xanh da troi
-extern Color darkBlue;    // Mau xanh dam
-extern Color red;         // Mau do
-extern Color darkRed;     // Mau do dam
+extern Color green;       // Màu xanh lá
+extern Color darkGreen;   // Xanh lá đậm
+extern Color blue;        // Xanh da trời
+extern Color darkBlue;    // Xanh da trời đậm
+extern Color red;         // Đỏ
+extern Color darkRed;     // Đỏ đậm
+extern Color yellow;      // Vàng
+extern Color gray;        // Xám
+extern Color lightGray;   // Xám nhạt
+extern Color orange;      // Cam
 
 // Cac thong so ve kich thuoc ban do
 extern int cellSize;      // Kich thuoc moi o vuong

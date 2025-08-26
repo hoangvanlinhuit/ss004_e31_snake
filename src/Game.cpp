@@ -11,7 +11,7 @@
 
 
 Game::Game() : snake(), food(snake.body, wall), running(true), score(0), showPlayAgain(false) {
-    InitAudioDevice();
+    // InitAudioDevice();
     eatSound = LoadSound("assets/Sounds/eat.mp3");
     wallSound = LoadSound("assets/Sounds/wall.mp3");
 
@@ -105,6 +105,16 @@ void Game::Reset() {
     showGameOver = false;
     showPlayAgain = false;
     running = true;
+
+    StopMusicStream(bgMusic);
+    UnloadMusicStream(bgMusic);
+    
+    // Không gọi CloseAudioDevice() ở đây!
+    bgMusic = LoadMusicStream("assets/Sounds/background.mp3");
+    PlayMusicStream(bgMusic);
+    SetMusicVolume(bgMusic, 0.5f);
+    isMusicPlaying = true;
+
 }
 
 
@@ -121,6 +131,15 @@ void Game::Update() {
         CheckCollisionWithEdges();
         CheckCollisionWithTail();
         CheckCollisionWithWall();
+    }
+
+    // 
+    if (isMusicPlaying) {
+        UpdateMusicStream(bgMusic);
+    }
+    if (IsKeyPressed(KEY_M)) {
+        ToggleMusic();
+        DrawText(isMusicPlaying ? "Music: ON" : "Music: OFF", offset, 10, 20, GREEN);
     }
 }
 
@@ -228,3 +247,19 @@ void Game::LoadLeaderboard() {
     });
 }
 
+void Game::Init() {
+    InitAudioDevice();  // Khởi tạo hệ thống âm thanh
+    bgMusic = LoadMusicStream("assets/Sounds/background.mp3");
+    PlayMusicStream(bgMusic);
+    SetMusicVolume(bgMusic, 0.5f); // Giảm âm lượng nếu cần
+    isMusicPlaying = true; // Reset trạng thái nhạc nền
+}
+
+void Game::ToggleMusic() {
+    isMusicPlaying = !isMusicPlaying;
+    if (isMusicPlaying) {
+        PlayMusicStream(bgMusic);
+    } else {
+        PauseMusicStream(bgMusic);
+    }
+}

@@ -68,9 +68,6 @@ float ShowDifficultyMenu() {
             }
         }
     }
-
-    
-
     return selectedSpeed;
 }
 
@@ -85,6 +82,7 @@ int main() {
 
     Game game;
     game.playerName = name;
+    game.Init(); // Gọi Init để khởi tạo nhạc nền
 
     float gameSpeed = ShowDifficultyMenu(); // ?? l?n d?u
 

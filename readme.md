@@ -13,7 +13,6 @@
 |------------------------|------|----------------------------|----------------|
 | Hoàng Văn Linh         | 24730208  | 24730208@ms.uit.edu.vn                 | UIT.MSSV       |
 | Huỳnh Minh Cường       | 24730181  | 24730181@ms.uit.edu.vn                 | UIT.MSSV       |
-| Ngô Đình Thủ Nhân      | 24730216  | 24730216@ms.uit.edu.vn                 | UIT.MSSV       |
 | Nguyễn Như Ngọc        | 24730213  | 24730213@ms.uit.edu.vn                 | UIT.MSSV       |
 | Nguyễn Ngọc Hải        | 24730191  | 24730191@ms.uit.edu.vn                 | UIT.MSSV       |
 

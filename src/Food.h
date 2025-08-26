@@ -12,31 +12,10 @@
 
 // Thu vien raylib dung de ve do hoa
 #include <raylib.h>
+#include "Wall.h" 
 
 // Thu vien deque dung de luu vi tri cac o (thay the vector)
 #include <deque>
-
-// Dinh nghia lop Food (doi tuong moi trong game)
-// class Food {
-// public:
-//     Vector2 position;       // Vi tri hien tai cua moi
-//     Texture2D texture;      // Hinh anh texture cua moi
-
-//     // Ham khoi tao, nhan vao than cua ran de tao vi tri moi khong trung
-//     Food(std::deque<Vector2> snakeBody);
-
-//     // Ham huy doi tuong, giai phong texture
-//     ~Food();
-
-//     // Ham ve moi len man hinh
-//     void Draw();
-
-//     // Ham tao mot toa do ngau nhien trong luoi
-//     Vector2 GenerateRandomCell();
-
-//     // Ham tao vi tri moi khong trung voi vi tri cua ran
-//     Vector2 GenerateRandomPos(std::deque<Vector2> snakeBody);
-// };
 
 class Food {
 public:
@@ -45,11 +24,12 @@ public:
     static void UnloadTexture();
 
     Vector2 position;
-    Food(std::deque<Vector2> snakeBody);
+    Food(std::deque<Vector2>& snakeBody, const Wall& wall);
     ~Food();
     void Draw();
     Vector2 GenerateRandomCell();
-    Vector2 GenerateRandomPos(std::deque<Vector2> snakeBody);
+    // Vector2 GenerateRandomPos(std::deque<Vector2> snakeBody);
+    Vector2 GenerateRandomPos(std::deque<Vector2>& snakeBody, const Wall& wall); // Thêm wall
 };
 
 #endif

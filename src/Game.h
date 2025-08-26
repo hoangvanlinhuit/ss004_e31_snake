@@ -5,7 +5,7 @@
 #include "Food.h"
 #include <string>
 #include <vector>
-
+#include "Wall.h"
 struct Player {
     std::string name;
     int score;
@@ -21,12 +21,14 @@ public:
     void CheckCollisionWithFood();
     void CheckCollisionWithEdges();
     void CheckCollisionWithTail();
+    void CheckCollisionWithWall();
     void GameOver();
     void SaveScoreToFile();
     void LoadLeaderboard();
     void ShowLeaderboard();
 
     //  
+    Wall wall;
     Snake snake;
     Food food;
     bool running;

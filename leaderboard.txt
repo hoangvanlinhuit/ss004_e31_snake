@@ -72,3 +72,9 @@ aa 0
 lam 0
 hai 0
 cuong 10
+lam 40
+lam 0
+lam 20
+ling 100
+linh 40
+linh 80

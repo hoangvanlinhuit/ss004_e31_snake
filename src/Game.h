@@ -42,10 +42,21 @@ public:
     Rectangle playAgainButton;
     void Reset();
 
+    // Nhạc nền
+    Music bgMusic;
+    bool isMusicPlaying = true;
+
+    void Init();            // Hàm khởi tạo game
+    // void Update();          // Cập nhật logic
+    void ToggleMusic();     // Bật/tắt nhạc nền
+
 private:
     Sound eatSound;
     Sound wallSound;
     std::vector<Player> leaderboard;
+
+    
+
 
     // Các hàm phụ trợ
     

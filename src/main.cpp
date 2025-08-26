@@ -1,0 +1,115 @@
+
+// main.cpp
+#include <raylib.h>
+#include <iostream>
+#include "Game.h"
+#include "utils.h"
+
+
+std::string GetPlayerNameInput() {
+    std::string name = "";
+    int letter = 0;
+
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        DrawText("Enter your name:", 50, 100, 20, BLACK);
+        DrawText(name.c_str(), 50, 140, 20, DARKBLUE);
+        EndDrawing();
+
+        if (IsKeyPressed(KEY_BACKSPACE) && !name.empty()) name.pop_back();
+        for (int key = KEY_A; key <= KEY_Z; key++) {
+            if (IsKeyPressed(key)) {
+                name += (char)(key + 32); // chuyển sang chữ thường
+            }
+        }
+        if (IsKeyPressed(KEY_ENTER) && !name.empty()) break;
+    }
+    return name;
+}
+
+float ShowDifficultyMenu() {
+    float selectedSpeed = 0.2f; // Default Normal
+    bool chosen = false;
+
+    Rectangle easyBtn = {(float)GetScreenWidth()/2 - 75, 200, 150, 40};
+    Rectangle normalBtn = {(float)GetScreenWidth()/2 - 75, 260, 150, 40};
+    Rectangle hardBtn = {(float)GetScreenWidth()/2 - 75, 320, 150, 40};
+
+    while (!WindowShouldClose() && !chosen) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        DrawText("Select Difficulty", GetScreenWidth()/2 - 120, 120, 30, RAYWHITE);
+
+        Vector2 mouse = GetMousePosition();
+        DrawRectangleRec(easyBtn, CheckCollisionPointRec(mouse, easyBtn) ? GRAY : LIGHTGRAY);
+        DrawRectangleRec(normalBtn, CheckCollisionPointRec(mouse, normalBtn) ? GRAY : LIGHTGRAY);
+        DrawRectangleRec(hardBtn, CheckCollisionPointRec(mouse, hardBtn) ? GRAY : LIGHTGRAY);
+
+        DrawText("EASY", easyBtn.x + 40, easyBtn.y + 10, 20, BLACK);
+        DrawText("NORMAL", normalBtn.x + 30, normalBtn.y + 10, 20, BLACK);
+        DrawText("HARD", hardBtn.x + 40, hardBtn.y + 10, 20, BLACK);
+
+        EndDrawing();
+
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            if (CheckCollisionPointRec(mouse, easyBtn)) {
+                selectedSpeed = 0.3f;
+                chosen = true;
+            }
+            else if (CheckCollisionPointRec(mouse, normalBtn)) {
+                selectedSpeed = 0.2f;
+                chosen = true;
+            }
+            else if (CheckCollisionPointRec(mouse, hardBtn)) {
+                selectedSpeed = 0.1f;
+                chosen = true;
+            }
+        }
+    }
+
+    
+
+    return selectedSpeed;
+}
+
+int main() {
+    const int screenWidth = offset * 2 + cellSize * cellCount + 200;
+    const int screenHeight = offset * 2 + cellSize * cellCount + 50;
+    InitWindow(screenWidth, screenHeight, "SNAKE GAME - GROUP 1");
+    Food::LoadTexture(); // Tải texture cho mồi
+    SetTargetFPS(60);
+
+    std::string name = GetPlayerNameInput();
+
+    Game game;
+    game.playerName = name;
+
+    float gameSpeed = ShowDifficultyMenu(); // ?? l?n d?u
+
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        allowMove = EventTriggered(gameSpeed);
+        game.Update();
+        game.Draw();
+        EndDrawing();
+
+        // N?u ngu?i choi ch?n l?i
+        if (game.showGameOver && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            Vector2 mousePos = GetMousePosition();
+            if (CheckCollisionPointRec(mousePos, game.playAgainButton)) {
+                game.Reset();  // Reset lại game
+                game.difficulty = ShowDifficultyMenu();  // Chọn lại độ khó
+                game.running = true;
+            }
+        }
+    }
+
+    Food::UnloadTexture(); // Giải phóng texture duy nhất
+    CloseWindow();
+    return 0;
+}
+

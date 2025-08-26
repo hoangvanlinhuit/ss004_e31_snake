@@ -40,7 +40,7 @@ float ShowDifficultyMenu() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawText("Select Difficulty", GetScreenWidth()/2 - 120, 120, 30, DARKBLUE);
+        DrawText("Select Difficulty", GetScreenWidth()/2 - 120, 120, 30, RAYWHITE);
 
         Vector2 mouse = GetMousePosition();
         DrawRectangleRec(easyBtn, CheckCollisionPointRec(mouse, easyBtn) ? GRAY : LIGHTGRAY);

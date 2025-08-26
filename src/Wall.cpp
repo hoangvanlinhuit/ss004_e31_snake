@@ -21,9 +21,17 @@ void Wall::Generate() {
     wallBlocks.push_back({6, 5});
     wallBlocks.push_back({7, 5});
 
+    wallBlocks.push_back({15, 5});
+    wallBlocks.push_back({16, 5});
+    wallBlocks.push_back({17, 5});
+
     wallBlocks.push_back({17, 17});
     wallBlocks.push_back({18, 17});
     wallBlocks.push_back({19, 17});
+
+    wallBlocks.push_back({7, 17});
+    wallBlocks.push_back({8, 17});
+    wallBlocks.push_back({9, 17});
 }
 
 void Wall::Draw() {

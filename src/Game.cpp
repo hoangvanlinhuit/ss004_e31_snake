@@ -12,8 +12,8 @@
 
 Game::Game() : snake(), food(snake.body, wall), running(true), score(0), showPlayAgain(false) {
     // InitAudioDevice();
-    eatSound = LoadSound("assets/Sounds/eat.mp3");
-    wallSound = LoadSound("assets/Sounds/wall.mp3");
+    // eatSound = LoadSound("assets/Sounds/eat.mp3");
+    // wallSound = LoadSound("assets/Sounds/wall.mp3");
 
     // Nút "Chơi lại" 3
     showGameOver = false;
@@ -55,7 +55,7 @@ void Game::Draw() {
         DrawText(entry.c_str(), leaderboardX, leaderboardY + 30 + i * 25, 20, darkGreen);
     }
 
-    // Hiển thị màn hình Game Over 3
+    // Hiển thị màn hình Game Over 
     if (showGameOver) {
         DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.7f));
         DrawText("GAME OVER", 320, 200, 40, RED);
@@ -100,7 +100,7 @@ void Game::Draw() {
 
 void Game::Reset() {
     snake.Reset();
-    food = Food(snake.body, wall);  // <-- truyền thêm wall
+    food = Food(snake.body, wall); 
     score = 0;
     showGameOver = false;
     showPlayAgain = false;
@@ -109,7 +109,6 @@ void Game::Reset() {
     StopMusicStream(bgMusic);
     UnloadMusicStream(bgMusic);
     
-    // Không gọi CloseAudioDevice() ở đây!
     bgMusic = LoadMusicStream("assets/Sounds/background.mp3");
     PlayMusicStream(bgMusic);
     SetMusicVolume(bgMusic, 0.5f);
@@ -253,6 +252,8 @@ void Game::Init() {
     PlayMusicStream(bgMusic);
     SetMusicVolume(bgMusic, 0.5f); // Giảm âm lượng nếu cần
     isMusicPlaying = true; // Reset trạng thái nhạc nền
+    eatSound = LoadSound("assets/Sounds/eat.mp3");
+    wallSound = LoadSound("assets/Sounds/wall.mp3");
 }
 
 void Game::ToggleMusic() {

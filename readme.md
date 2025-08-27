@@ -3,25 +3,26 @@
 ## 🧑‍🏫 Giảng viên hướng dẫn
 - **Tên**: Nguyễn Văn Toàn
 - **Email**: toannv@uit.edu.vn
+-
 
 ---
 
 ## 👨‍💻 Thông tin nhóm
 
-| Họ và Tên             | MSSV | Email UIT (gm.uit.edu.vn) | Tên hiển thị |
+| Họ và Tên              | MSSV | Email UIT (ms.uit.edu.vn) | Tên hiển thị |
 |------------------------|------|----------------------------|----------------|
-| Hoàng Văn Linh         | ...  | UIT.MSSV                   | UIT.MSSV       |
-| Huỳnh Minh Cường       | ...  | UIT.MSSV                   | UIT.MSSV       |
-| Ngô Đình Thủ Nhân      | ...  | UIT.MSSV                   | UIT.MSSV       |
-| Nguyễn Như Ngọc        | ...  | UIT.MSSV                   | UIT.MSSV       |
-| Nguyễn Ngọc Hải             | ...  | UIT.MSSV                   | UIT.MSSV       |
+| Hoàng Văn Linh         | 24730208  | 24730208@ms.uit.edu.vn                 | UIT.MSSV       |
+| Huỳnh Minh Cường       | 24730181  | 24730181@ms.uit.edu.vn                 | UIT.MSSV       |
+| Ngô Đình Thủ Nhân      | 24730216  | 24730216@ms.uit.edu.vn                 | UIT.MSSV       |
+| Nguyễn Như Ngọc        | 24730213  | 24730213@ms.uit.edu.vn                 | UIT.MSSV       |
+| Nguyễn Ngọc Hải        | 24730191  | 24730191@ms.uit.edu.vn                 | UIT.MSSV       |
 
 ---
 
 ## 🔗 Link các công cụ làm việc nhóm
 
 - **Trello**: [My Trello Board](https://trello.com/b/FGTKyL6e/my-trello-board)
-- **Slack**: `#kỹ-năng-nghề-bài-tập-6` (trong workspace nhóm)
+- **Slack**: `#01` (trong workspace nhóm)
 - **GitHub**: [hoangvanlinhuit/ss004_e31_snake](https://github.com/hoangvanlinhuit/ss004_e31_snake)
 - **Overleaf**: [Overleaf Project](https://www.overleaf.com/project/6889a10d48bbecaee1ab0b4f)
 - **Bài hướng dẫn GV**: `ConRan.mp4`
@@ -34,7 +35,11 @@
 ## 📁 Nội dung báo cáo
 
 ### 1. 📜 Hợp đồng nhóm
+- Tên nhóm
+- Thành viên nhóm, vai trò
+- Mục tiêu
 - Nội dung về phân công công việc, thời hạn, trách nhiệm, quy tắc làm việc nhóm...
+- Tiêu chí đánh giá
 
 ### 2. 🔗 Các liên kết công cụ
 - Trello, GitHub, Slack, Overleaf như ở trên
@@ -66,7 +71,9 @@
 
 ### 7. 🧾 Đánh giá việc thực hiện hợp đồng nhóm
 - Mức độ hoàn thành từng thành viên
+- Đánh giá theo các tiêu chí đã nêu trong hợp đồng
 - Thành viên tích cực, chưa tích cực, cam kết, cải thiện
+- Đánh giá từng thành viên, tổng kết đánh giá nhóm
 
 ---
 
@@ -99,3 +106,5 @@
 
 ---
 
+Gantt
+TBD

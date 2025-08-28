@@ -55,9 +55,6 @@ private:
     Sound wallSound;
     std::vector<Player> leaderboard;
 
-    
-
-
     // Các hàm phụ trợ
     
     void CheckMouseEvents();

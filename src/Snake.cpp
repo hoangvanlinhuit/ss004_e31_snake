@@ -24,9 +24,6 @@ void Snake::Update() {
     allowMove = false;  // reset lại cờ
 }
 
-
-
-
 void Snake::Reset() {
     body = {{6, 9}, {5, 9}, {4, 9}};
     direction = {1, 0};

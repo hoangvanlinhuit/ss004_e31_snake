@@ -95,7 +95,7 @@ int main() {
         game.Draw();
         EndDrawing();
 
-        // N?u ngu?i choi ch?n l?i
+        // Neu nguoi choi chon lai
         if (game.showGameOver && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             Vector2 mousePos = GetMousePosition();
             if (CheckCollisionPointRec(mousePos, game.playAgainButton)) {

@@ -12,13 +12,26 @@
 
 Game::Game() : snake(), food(snake.body, wall), running(true), score(0), showPlayAgain(false) {
     // InitAudioDevice();
-    eatSound = LoadSound("assets/Sounds/eat.mp3");
-    wallSound = LoadSound("assets/Sounds/wall.mp3");
+    // eatSound = LoadSound("assets/Sounds/eat.mp3");
+    // wallSound = LoadSound("assets/Sounds/wall.mp3");
 
     // Nút "Chơi lại" 3
     showGameOver = false;
     showPlayAgain = false;
-    playAgainButton = { 300, 400, 200, 50 }; // tuỳ chỉnh vị trí và kích thước nút
+    // playAgainButton = { 300, 400, 200, 50 }; // tuỳ chỉnh vị trí và kích thước nút
+
+    // Tao button playAgain can giua
+    int buttonWidth = 200;
+    int buttonHeight = 50;
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
+
+    playAgainButton = {
+        (float)(screenWidth / 2 - buttonWidth / 2),
+        (float)(screenHeight / 2 + 50),  
+        (float)buttonWidth,
+        (float)buttonHeight
+    };
 }
 
 Game::~Game() {
@@ -31,6 +44,39 @@ Game::~Game() {
 void Game::Draw() {
     ClearBackground(darkBlue);
 
+    // Hiển thị màn hình Game Over 
+    if (showGameOver) {
+        // Nền trắng toàn màn hình
+        ClearBackground(WHITE);
+
+        // Hiển thị chữ "GAME OVER"
+        DrawText("GAME OVER", GetScreenWidth() / 2 - 120, 200, 40, RED);
+
+        // Hiển thị điểm số
+        std::string scoreText = "Score: " + std::to_string(score);
+        DrawText(scoreText.c_str(), GetScreenWidth() / 2 - 50, 260, 20, BLACK);
+
+        // Nút Play Again
+        DrawRectangleRec(playAgainButton, DARKGRAY);
+        // DrawText("Play Again", playAgainButton.x + 30, playAgainButton.y + 15, 20, WHITE);
+        int textWidth = MeasureText("Play Again", 20);
+        DrawText("Play Again",
+                playAgainButton.x + (playAgainButton.width - textWidth) / 2,
+                playAgainButton.y + 15,
+                20, WHITE);
+        
+
+        return;
+    }
+
+    // Hiển thị phiên bản game ở góc dưới bên phải
+    std::string versionText = "Version 1.0 - Group 1";
+    int versionFontSize = 18;
+    int versionTextWidth = MeasureText(versionText.c_str(), versionFontSize);
+    int versionX = GetScreenWidth() - versionTextWidth - 10;
+    int versionY = GetScreenHeight() - versionFontSize - 10;
+    DrawText(versionText.c_str(), versionX, versionY, versionFontSize, BLACK);
+
     // Tiêu đề
     DrawText("SNAKE GAME - GROUP 1", offset, offset / 2, 30, green);
 
@@ -39,9 +85,7 @@ void Game::Draw() {
         { (float)offset, (float)offset, (float)(cellSize * cellCount), (float)(cellSize * cellCount) },
         3, darkGreen
     );
-
     
-
     // Load leaderboard từ file mỗi lần vẽ
     LoadLeaderboard();
 
@@ -55,17 +99,7 @@ void Game::Draw() {
         DrawText(entry.c_str(), leaderboardX, leaderboardY + 30 + i * 25, 20, darkGreen);
     }
 
-    // Hiển thị màn hình Game Over 3
-    if (showGameOver) {
-        DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.7f));
-        DrawText("GAME OVER", 320, 200, 40, RED);
-
-        std::string scoreText = "Score: " + std::to_string(score); // Giả sử bạn có biến score
-        DrawText(scoreText.c_str(), 350, 250, 20, WHITE);
-
-        DrawRectangleRec(playAgainButton, DARKGRAY);
-        DrawText("Play Again", playAgainButton.x + 30, playAgainButton.y + 15, 20, WHITE);
-    }
+    
 
 
     std::string diffText = "Difficulty: ";
@@ -100,7 +134,7 @@ void Game::Draw() {
 
 void Game::Reset() {
     snake.Reset();
-    food = Food(snake.body, wall);  // <-- truyền thêm wall
+    food = Food(snake.body, wall); 
     score = 0;
     showGameOver = false;
     showPlayAgain = false;
@@ -109,7 +143,6 @@ void Game::Reset() {
     StopMusicStream(bgMusic);
     UnloadMusicStream(bgMusic);
     
-    // Không gọi CloseAudioDevice() ở đây!
     bgMusic = LoadMusicStream("assets/Sounds/background.mp3");
     PlayMusicStream(bgMusic);
     SetMusicVolume(bgMusic, 0.5f);
@@ -253,6 +286,8 @@ void Game::Init() {
     PlayMusicStream(bgMusic);
     SetMusicVolume(bgMusic, 0.5f); // Giảm âm lượng nếu cần
     isMusicPlaying = true; // Reset trạng thái nhạc nền
+    eatSound = LoadSound("assets/Sounds/eat.mp3");
+    wallSound = LoadSound("assets/Sounds/wall.mp3");
 }
 
 void Game::ToggleMusic() {

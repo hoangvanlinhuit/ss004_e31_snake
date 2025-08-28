@@ -99,8 +99,6 @@ void Game::Draw() {
         DrawText(entry.c_str(), leaderboardX, leaderboardY + 30 + i * 25, 20, darkGreen);
     }
 
-    
-
 
     std::string diffText = "Difficulty: ";
     if (difficulty == 0.3f) diffText += "Easy";
